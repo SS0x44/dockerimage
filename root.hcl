@@ -1,9 +1,11 @@
 locals {
-  app_id      = ""
-  app_prefix  = ""
+  app_id           = ""
+  app_prefix       = ""
   common_tags {
-    
-
+    app_name       = ""
+    component      = ""
+    cost_centre    = ""
+    resource-owner = ""
   }
   account_vars   = read_terragrunt_config(find_in_parent_folders("account.hcl"))
   region_vars    = read_terragrunt_config(find_in_parent_folders("region.hcl"))
@@ -16,7 +18,7 @@ locals {
   region_short = local.region_vars.locals.aws_region_short
 
 }
-
+#creae proveder.tf file
 generate "backend" {
   path      = "backend.tf"
   if_exists = "overwrite"
@@ -26,7 +28,6 @@ terraform {
 }
 EOF
 }
-
 remote_state {
   backend = "s3"
   config = {
@@ -37,7 +38,7 @@ remote_state {
     use_lockfile   = true
   }
 }
-
+#creae proveder.tf file
 generate "provider" {
   path      = "provider.tf"
   if_exists = "overwrite"
