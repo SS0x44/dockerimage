@@ -7,7 +7,7 @@ variables:
   TERRAGRUNT_VERSION: 0.87.0
   GRADLE_VERSION: 8.4
   GO_VERSION: 1.22.2
-  IMAGE: "glrunner"
+  IMAGE_NAME: "glrunner"
   DOCKER_DRIVER: overlay2
   DOCKER_PASSWORD: ""
   DOCKER_USER: ""
@@ -35,6 +35,6 @@ build:
     - LATEST="v$MAJOR.$MINOR.$PATCH"
     - docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD" "$DOCKER_REGISTRY"
     - docker build -t "DOCKER_REGISTRY_IMAGE:$LATEST" .
-    - docker tag "$IMAGE" "$DOCKER_REGISTRY_IMAGE:$LATEST"
+    - docker tag "$IMAGE_NAME" "$DOCKER_REGISTRY_IMAGE:$LATEST"
 
     - docker push "$DOCKER_REGISTRY_IMAGE:$LATEST"
