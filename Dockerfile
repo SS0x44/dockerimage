@@ -1,9 +1,16 @@
 FROM amazonlinux:latest
-ENV MVN_VERSION=3.9.6
-ENV TERRAFORM_VERSION=1.13.3
-ENV TERRAGRUNT_VERSION=0.87.0
-ENV GRADLE_VERSION=8.4
-ENV GO_VERSION=1.22.2
+# Accept build-time arguments
+ARG TERRAFORM_VERSION
+ARG TERRAGRUNT_VERSION
+ARG MVN_VERSION
+ARG GRADLE_VERSION
+ARG GO_VERSION
+# Optionally expose them as ENV if needed later
+ENV TERRAFORM_VERSION=${TERRAFORM_VERSION}
+ENV TERRAGRUNT_VERSION=${TERRAGRUNT_VERSION}
+ENV MVN_VERSION=${MVN_VERSION}
+ENV GRADLE_VERSION=${GRADLE_VERSION}
+ENV GO_VERSION=${GO_VERSION}
 # Install system packages
 RUN yum update -y && yum install -y wget git zip unzip tar jq python3 python3-pip gcc make curl yum-utils shadow-utils java-17-amazon-corretto-devel
 # Install boto3
